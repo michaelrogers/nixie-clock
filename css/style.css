@@ -1,0 +1,77 @@
+* { box-sizing: border-box; }
+
+body,
+html {
+  width: 100%;
+  height: 100vh;
+}
+body { background-color: rgba(125,125,125,0.2); }
+.page-wrapper {
+  top: 30vh;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: 0 auto;
+  text-align: center;
+}
+.nixie-clock,
+.display-container {
+  display: inline-block;
+}
+.nixie-clock { 
+  position: relative;
+  display: inline-block;
+}
+.display-base {
+  height: 100px;
+  background: linear-gradient(175deg, rgba(68,48,40,1), rgba(48,28,20,1), rgba(68,48,40,1));
+  box-shadow: 0 10px 10px 0 rgba(0,0,0,0.4);
+}
+.time-grouping {
+  display: inline-block;
+  margin: 0 10px;
+}
+.nixie-tube {
+  height: 120px;
+  width: 55px;
+  display: inline-block;
+  position: relative;
+  background: rgba(125,125,125,0.1);
+  border-radius: 19px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+.nixie-tube::after {
+  position: absolute;
+  width: 35px;
+  top: 0;
+  left: -35px;
+  height: 175px;
+  transform: skewX(-27deg);
+  background: linear-gradient(92deg,transparent,rgba(125, 125, 125, 0.3));
+  content: '';
+}
+
+.nixie-tube span.digit {
+  position: absolute;
+  font-size: 80px;
+  color: rgba(125,125,125,0.4);
+  font-family: 'Nixie One';
+  top: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.nixie-tube span.digit.active { color: orangered;  }
+/*Picks up the id so that it overlays the glow on top*/
+.nixie-tube span.digit.active::after {
+  text-shadow: rgb(255, 69, 0) 0px 0px 8px, rgb(255, 69, 0) 0px 0px 40px;
+  z-index: 10;
+  content: attr(id);
+  position: absolute;
+  color: rgba(0, 0, 0, 0);
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
